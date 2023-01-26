@@ -5,7 +5,8 @@ sudo a2enmod proxy_balancer
 sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/domain1.com.conf
 
 Enable Your Config File
-Out of the box, your server is set to read the default 000-default.conf file.  But, in our previous step we made a new config file for each domain.  So, we will need to disable the default file.
+Out of the box, your server is set to read the default 000-default.conf file.  But, in our previous step we made a new config file for each domain. 
+So, we will need to disable the default file.
 
 a2dissite 000-default.conf
 
