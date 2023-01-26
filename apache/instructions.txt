@@ -1,6 +1,7 @@
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 sudo a2enmod proxy_balancer
+sudo a2enmod lbmethod_byrequests
 
 sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/domain1.com.conf
 
@@ -19,3 +20,6 @@ a2ensite domain2.com.conf
 We restart the Apache service to register our changes.
 
 systemctl restart apache2
+
+// check syntax
+apachectl configtest

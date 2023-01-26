@@ -1,9 +1,9 @@
+// add domain inside /etc/nginx/sites-available/domain.com
+// configure reverse proxy there
+
 // Disable the Default Virtual Host
 // Once you have installed Nginx, follow the below command to disable the virtual host:
 sudo unlink /etc/nginx/sites-enabled/default
-
-// add domain inside /etc/nginx/sites-available/domain.com
-// configure reverse proxy there
 
 // check syntax
 sudo nginx -t
