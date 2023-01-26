@@ -11,4 +11,7 @@ sudo nginx -t
 // symlink sites-available with sites-enabled
 ln -s /etc/nginx/sites-available/domain.com /etc/nginx/sites-enabled/
 
+// create load balancer config
+sudo nano /etc/nginx/conf.d/load-balancer.conf
+
 sudo systemctl restart nginx
