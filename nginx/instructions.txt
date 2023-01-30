@@ -2,6 +2,7 @@
 // configure reverse proxy there
 
 // Disable the Default Virtual Host
+// unlink or delete or rename the file depending on host os config
 // Once you have installed Nginx, follow the below command to disable the virtual host:
 sudo unlink /etc/nginx/sites-enabled/default
 
@@ -14,9 +15,4 @@ ln -s /etc/nginx/sites-available/domain.com /etc/nginx/sites-enabled/
 // create load balancer config
 sudo nano /etc/nginx/conf.d/load-balancer.conf
 
-sudo systemctl restart nginx
-
-
-// lb
-sudo nano /etc/nginx/conf.d/loadbalancer.conf
 sudo systemctl restart nginx
