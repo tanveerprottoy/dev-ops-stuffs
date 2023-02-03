@@ -1,0 +1,2 @@
+// --no-cache if clean build needed
+docker build --no-cache -f Dockerfile.alpine . -t container-tag
