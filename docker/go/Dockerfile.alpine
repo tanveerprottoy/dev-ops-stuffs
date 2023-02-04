@@ -1,0 +1,25 @@
+# build stage
+FROM golang:1.19-alpine AS build
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+
+COPY ./config/prod.env ./.env
+
+RUN go mod download
+
+COPY ./ ./
+
+RUN go build -o ./app ./cmd/app/main.go
+
+# deploy stage
+FROM golang:1.19-alpine
+
+WORKDIR /app
+
+COPY --from=build ./app ./
+
+EXPOSE 8080
+
+ENTRYPOINT ["./app"]
