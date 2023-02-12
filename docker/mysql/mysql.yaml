@@ -10,7 +10,7 @@ services:
       - "MYSQL_PASSWORD=password"
       - "MYSQL_ROOT_PASSWORD=password"
     volumes:
-      db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     # expose:
     #   - 3306
 volumes:
