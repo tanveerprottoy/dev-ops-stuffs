@@ -2,23 +2,26 @@ version: "3.9"
 
 services:
   elasticsearch:
-    image: elasticsearch:latest
+    image: elasticsearch
     container_name: elasticsearch
-    networks: elastic-net
+    networks:
+      - elastic-net
     ports:
       - 9200:9200
   kibana:
-    image: kibana:latest
+    image: kibana
     container_name: kibana
-    networks: elastic-net
+    networks:
+      - elastic-net
     ports:
       - 5601:5601
     depends_on:
       - elasticsearch
   logstash:
-    image: logstash:latest
+    image: logstash
     container_name: logstash
-    networks: elastic-net
+    networks:
+      - elastic-net
     ports:
       - 5044:5044
     expose:
