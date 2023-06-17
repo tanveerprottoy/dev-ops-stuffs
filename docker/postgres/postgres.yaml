@@ -1,7 +1,7 @@
 version: "3.9"
 services:
-  mongodb:
-    image: mysql
+  postgres:
+    image: postgres
     ports:
       - 5432:5432
     environment:
