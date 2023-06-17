@@ -8,7 +8,7 @@ services:
     container_name: rest-api-starter-go
     env_file: .env
     ports:
-      - 8080:8080
+      - "8080:8080"
     depends_on:
       - mongodb
   mongodb:
@@ -17,7 +17,7 @@ services:
     volumes:
       - starter-data:/var/lib/mongo/data
     ports:
-      - 27017:27017
+      - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
