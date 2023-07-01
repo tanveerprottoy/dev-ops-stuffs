@@ -1,0 +1,22 @@
+https://ostechnix.com/how-to-change-kvm-libvirt-default-storage-pool-location
+
+// list running vms
+virsh list --all
+
+1.1.2. List all the configured storage pools in your KVM host machine:
+
+$ virsh pool-list 
+
+1.1.3. Let us view the details of the default storage pool using command:
+
+$ virsh pool-info default 
+
+// destroy and undefine default pool or any other pool
+virsh pool-destroy default
+virsh pool-undefine default
+
+// recreate default pool with desired storage path
+virsh pool-define-as default dir - - - - "/home/tanveer/VMData/images"
+
+// edit if need to change anything on the pool
+virsh pool-edit default
