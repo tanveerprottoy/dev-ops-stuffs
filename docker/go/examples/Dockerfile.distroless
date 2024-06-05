@@ -1,20 +1,18 @@
 # build stage
-FROM golang:1.22-bookworm AS build
+FROM golang:1.21-bookworm AS build
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
-
-COPY ./config/prod.env ./.env
+COPY ./go.mod ./go.sum ./
 
 RUN go mod download
 
-COPY ./ ./
+COPY *.go ./
 
-RUN go build -o ./app ./cmd/app/main.go
+RUN go build -o ./app ./cmd/workersinsights/main.go
 
 # deploy stage
-FROM gcr.io/distroless/base-debian11
+FROM gcr.io/distroless/base-debian12
 
 WORKDIR /app
 
@@ -26,4 +24,3 @@ EXPOSE 8080
 USER nonroot:nonroot
 
 ENTRYPOINT ["./app"]
-
