@@ -1,0 +1,11 @@
+# create new service for deployment
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+
+# create new service for pod
+kubectl expose pod <podname> --type="NodePort" --port 8080 --name <name>
+
+# view services
+kubectl get services
+
+kubectl describe services/<name>
+

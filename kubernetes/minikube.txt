@@ -1,0 +1,26 @@
+# to use local docker image
+https://minikube.sigs.k8s.io/docs/handbook/pushing/#1-pushing-directly-to-the-in-cluster-docker-daemon-docker-env
+
+minikube start
+
+
+# Set docker env
+eval $(minikube docker-env)             # Unix shells
+minikube docker-env | Invoke-Expression # PowerShell
+
+# Build image in the same cli session that was used to run the previous command
+docker build -t foo:0.0.1 .
+
+# Run in Minikube
+kubectl run hello-foo --image=foo:0.0.1 --image-pull-policy=Never
+
+# Check that it's running
+kubectl get pods
+
+
+# create deployment
+kubectl create deployment deployment-name --image=<name>:<tag>
+
+# get deployments
+kubectl get deployments
+
