@@ -1,5 +1,5 @@
 # create new service for deployment
-kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080 --name <name>
 
 # create new service for pod
 kubectl expose pod <podname> --type="NodePort" --port 8080 --name <name>
@@ -8,4 +8,13 @@ kubectl expose pod <podname> --type="NodePort" --port 8080 --name <name>
 kubectl get services
 
 kubectl describe services/<name>
+
+# create from file
+kubectl create -f myfirstyaml.yaml
+
+# apply from file
+kubectl apply -f myfirstyaml.yaml
+
+# scale up to 4 replicas
+kubectl scale deployments/<name> --replicas=4
 

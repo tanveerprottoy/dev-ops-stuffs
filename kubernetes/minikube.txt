@@ -8,19 +8,33 @@ minikube start
 eval $(minikube docker-env)             # Unix shells
 minikube docker-env | Invoke-Expression # PowerShell
 
+# the below commands has to be run in the same cli sesssion as the # Set docker env command was run
+
 # Build image in the same cli session that was used to run the previous command
 docker build -t foo:0.0.1 .
 
-# Run in Minikube
+# create deployment
+kubectl create deployment deployment-name --image=<name>:<tag> --image-pull-policy=Never
+
+# get deployments
+kubectl get deployments
+
+# create new service for deployment
+kubectl expose deployment/<name> --type="NodePort" --port 8080
+
+# view services
+kubectl get services
+
+kubectl describe services/<name>
+
+# scale up to 4 replicas
+kubectl scale deployments/<name> --replicas=4
+
+
+# Run
 kubectl run hello-foo --image=foo:0.0.1 --image-pull-policy=Never
 
 # Check that it's running
 kubectl get pods
 
-
-# create deployment
-kubectl create deployment deployment-name --image=<name>:<tag>
-
-# get deployments
-kubectl get deployments
 
