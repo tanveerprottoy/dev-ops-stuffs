@@ -1,0 +1,10 @@
+services:
+  jenkins-container:
+    image: jenkins/jenkins
+    ports:
+      - 8080:8080
+    volumes:
+      - jenkins-vol:/Users/tanveerprottoy/Dev/DevOps/jenkins
+
+volumes:
+  jenkins-vol:
