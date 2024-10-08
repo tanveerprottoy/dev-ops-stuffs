@@ -2,9 +2,9 @@ services:
   jenkins-container:
     image: jenkins/jenkins
     ports:
-      - 8080:8080
+      - 8181:8181
     volumes:
-      - jenkins-vol:/Users/tanveerprottoy/Dev/DevOps/jenkins
+      - jenkins-vol:/home/gdn-tanvir/docker_vols
 
 volumes:
   jenkins-vol:
