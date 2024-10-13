@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        SSH_CREDENTIALS_ID = '<cred-id>'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pull the latest code from the Git repository
+                git branch: 'master', url: '<url>'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'go build -o <app-name>'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run Go unit tests
+                sh 'go test -v ./...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
+                    sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+                    sh 'docker push shadowshotx/product-go-micro'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}

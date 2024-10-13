@@ -2,12 +2,7 @@ pipeline {
     // install golang 1.14 on Jenkins node
     agent any
     tools {
-        go 'go1.14'
-    }
-    environment {
-        GO114MODULE = 'on'
-        CGO_ENABLED = 0 
-        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+        go 'go1.22'
     }
     stages {
         stage("unit-test") {
@@ -34,8 +29,8 @@ pipeline {
             agent any
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
-                sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
-                sh 'docker push shadowshotx/product-go-micro'
+                    sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+                    sh 'docker push shadowshotx/product-go-micro'
                 }
             }
         }
